@@ -91,11 +91,11 @@ def main(args, video_name, tmp_dir, outpath_video):
     os.system(create_video)
 
     # fix i frame, re-encoding
-    fix_frame = "ffmpeg -y -i " + outpath_video + "_" + video_name + ".mp4" + " -c:v libx264 -r " + str(frame_rate) + " " + outpath_video + video_name + ".mp4"
+    fix_frame = f"ffmpeg -y -i {outpath_video}_{video_name}.mp4 -c:v libx264 -r {frame_rate} {outpath_video}{video_name}.mp4"
     os.system(fix_frame)
     
     # clean up mess
-    os.remove(outpath_video + "_" + video_name + ".mp4")
+    os.remove(f"{outpath_video}_{video_name}.mp4")
     delete_shit(tmp_dir)
     print("done")
 
